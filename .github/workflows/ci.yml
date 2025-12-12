@@ -1,0 +1,11 @@
+name: platform-ci
+
+on:
+  push:
+    branches: ["main", "work"]
+  pull_request:
+
+jobs:
+  platform:
+    uses: ./.github/workflows/internal-ci.yml
+    secrets: inherit

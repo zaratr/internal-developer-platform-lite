@@ -1,0 +1,43 @@
+name: deploy
+
+on:
+  workflow_call:
+    inputs:
+      service-name:
+        required: true
+        type: string
+      sha:
+        required: true
+        type: string
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Deploy dev
+        run: echo "Deploying dev for ${{ inputs.service-name }} @ ${{ inputs.sha }}"
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: deploy-dev
+    environment: staging
+    steps:
+      - name: Deploy staging
+        run: echo "Promoting to staging"
+
+  deploy-prod:
+    runs-on: ubuntu-latest
+    needs: deploy-staging
+    environment: prod
+    steps:
+      - name: Deploy prod
+        run: echo "Promoting to prod"
+
+  rollback:
+    runs-on: ubuntu-latest
+    needs: deploy-prod
+    if: failure()
+    steps:
+      - name: Rollback
+        run: echo "Re-deploying previous stable artifact"

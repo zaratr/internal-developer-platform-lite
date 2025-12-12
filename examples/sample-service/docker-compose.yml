@@ -1,0 +1,27 @@
+services:
+  api:
+    build: .
+    image: sample-service:dev
+    env_file: .env.example
+    environment:
+      SERVICE_ENV: ${SERVICE_ENV:-dev}
+    ports:
+      - "8000:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    profiles: ["dev"]
+
+  api-staging:
+    image: sample-service:staging
+    environment:
+      SERVICE_ENV: staging
+    ports:
+      - "8001:8000"
+    profiles: ["staging"]
+
+  api-prod:
+    image: sample-service:prod
+    environment:
+      SERVICE_ENV: prod
+    ports:
+      - "8002:8000"
+    profiles: ["prod"]
