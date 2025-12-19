@@ -5,9 +5,8 @@ from fastapi import FastAPI
 
 from .config_provider import EnvConfigProvider
 from .logging_config import configure_logging, log_startup
-from .middleware import correlation_id_middleware
+from .middleware import correlation_id_middleware, metrics_stub_middleware
 from .routers import router
-from prometheus_fastapi_instrumentator import Instrumentator
 
 service_env = os.environ.get("SERVICE_ENV", "dev")
 config_provider = EnvConfigProvider()
@@ -20,9 +19,7 @@ log_startup(logger, {"service": config.service_name, "env": service_env, "versio
 app = FastAPI(title=config.service_name)
 app.include_router(router)
 app.middleware("http")(correlation_id_middleware)
-
-# Prometheus metrics instrumentation
-Instrumentator().instrument(app).expose(app)
+app.middleware("http")(metrics_stub_middleware)
 
 
 @app.get("/")
