@@ -77,3 +77,38 @@ python -m platform.cli.idp create service user-profile
 
 ## Who is this for?
 Platform engineers who want a concise, demonstrable repo that shows platform thinking: standards, paved roads, and operational guardrails.
+
+## Features Showcase
+
+### 🚀 Multi-Language Support
+- Python (FastAPI) with full observability
+- Java (Spring Boot) with health endpoints
+- Extensible template system
+
+### ☁️ Multi-Cloud Ready
+Deployment patterns documented for AWS, Azure, Google Cloud, and IBM Cloud. See [docs/multi_cloud.md](docs/multi_cloud.md).
+
+### 🤖 AI-Enhanced Generation
+Optional AI optimization reports with `--ai-enhance` flag. See [docs/ai_integration.md](docs/ai_integration.md).
+
+### 🎨 Control Plane Dashboard
+React-based UI for service management with real-time status. See [docs/quickstart.md](docs/quickstart.md).
+
+### 📊 Production Observability
+- Prometheus metrics built-in
+- Structured JSON logging
+- Grafana dashboard templates
+See [docs/observability.md](docs/observability.md).
+
+### 🧪 Comprehensive Testing
+Unit, integration, and E2E tests. See [docs/testing_strategy.md](docs/testing_strategy.md).
+
+### 🔄 Enterprise CI/CD
+Multi-environment deployment pipeline with automatic rollback. See [docs/cicd_pipeline.md](docs/cicd_pipeline.md).
+
+## Documentation
+- [Quick Start Guide](docs/quickstart.md)
+- [Design Thinking Process](docs/design_thinking.md)
+- [Demo Script](docs/demo_script.md)
+- [All Documentation](docs/)
+
